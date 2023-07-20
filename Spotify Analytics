@@ -43,3 +43,27 @@ SELECT track_name, artist_name, popularity
 FROM BIT_DB.spotifydata
 ORDER BY popularity desc
 LIMIT 10
+
+#Then I determined the least popular 5 artists
+SELECT artist_name AS 'Artist', track_name AS 'Title', popularity
+FROM BIT_DB.Spotifydata
+ORDER BY popularity ASC
+Limit 5
+
+#I then determined the avg popularity, danceability, and energy by artist and track.
+SELECT
+artist_name AS Artist
+,track_name AS Title
+,avg(popularity) AS Popularity
+,avg(danceability) AS Danceability
+,avg(energy) AS Energy
+FROM BIT_DB.spotifydata
+GROUP BY artist_name, track_name
+
+#I was also curious about track length, so I determined the duration of each song
+SELECT artist_name AS 'Artist', track_name AS 'Title', (duration_ms/1000) AS Seconds
+FROM BIT_DB.Spotifydata
+
+#and the the average duration of each song
+SELECT AVG(duration_ms/1000) AS Runtime
+FROM BIT_DB.Spotifydata
